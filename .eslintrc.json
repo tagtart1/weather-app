@@ -13,6 +13,9 @@
     "no-console": "off",
     "linebreak-style": "off",
     "quotes": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "import/prefer-default-export": "off",
+    "comma-dangle": "off",
+    "no-return-assign": "off"
   }
 }
