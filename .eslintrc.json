@@ -16,6 +16,7 @@
     "no-unused-vars": "warn",
     "import/prefer-default-export": "off",
     "comma-dangle": "off",
-    "no-return-assign": "off"
+    "no-return-assign": "off",
+    "prefer-destructuring": "off"
   }
 }

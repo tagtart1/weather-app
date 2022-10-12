@@ -8,16 +8,52 @@
   </head>
   <body>
     <form>
-      <div>
-        <input
-          type="search"
-          id="search-city"
-          name="search-city"
-          placeholder="Search City"
-        />
-        <button>SEARCH</button>
-      </div>
+      <input
+        type="search"
+        id="search-city"
+        name="search-city"
+        placeholder="Search City"
+      />
+      <button>Search</button>
     </form>
+    <div class="weather-today">
+      <div class="temp-location">
+        <div class="temp"></div>
+        <div class="hi-lo">
+          <div class="hi">
+            <span>H:</span>
+            <span></span>
+          </div>
+          <div class="lo">
+            <span>L:</span>
+            <span></span>
+          </div>
+        </div>
+        <div class="location"></div>
+      </div>
+      <div class="weather-desc">
+        <div class="weather-name"></div>
+        <div class="weather-details"></div>
+      </div>
+      <div class="weather-misc">
+        <div class="feels-like">
+          <p>Feels like</p>
+          <p></p>
+        </div>
+        <div class="humidity">
+          <p>Humidity</p>
+          <p></p>
+        </div>
+        <div class="pressure">
+          <p>Pressure</p>
+          <p></p>
+        </div>
+        <div class="wind">
+          <p>Wind</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html>
