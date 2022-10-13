@@ -4,6 +4,13 @@ import * as WeatherAPIHandler from "./weatherAPIhandler";
 const currentWeatherData = {};
 const form = document.querySelector("form");
 const searchBar = document.getElementById("search-city");
+const arrowDropdown = document.querySelector(".arrow-dropdown");
+const dropdownContainer = document.querySelector(".toggle-container");
+const degreeCheckbox = document.getElementById("degree-checkbox");
+const degreeSwitch = document.querySelector(".switch");
+const exitToggleBtn = document.querySelector(".exit");
+
+let isCelsius = false;
 
 const displayData = () => {
   const temp = document.querySelector(".temp");
@@ -45,10 +52,85 @@ const findCityWeather = (city) => {
   });
 };
 
+const convertToCelcius = (num) => {
+  let newNum = num.split("°")[0];
+  newNum = (newNum - 32) * (5 / 9);
+  newNum = Math.round(newNum);
+  newNum = newNum.toString().concat("°");
+
+  return newNum;
+};
+
+const convertToFarenheit = (num) => {
+  let newNum = num.split("°")[0];
+
+  newNum = newNum * (9 / 5) + 32;
+
+  newNum = Math.round(newNum);
+  newNum = newNum.toString().concat("°");
+
+  return newNum;
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   findCityWeather(searchBar.value);
   form.reset();
+});
+
+degreeCheckbox.addEventListener("click", () => {
+  if (!isCelsius) {
+    isCelsius = true;
+    currentWeatherData.main.temp = convertToCelcius(
+      currentWeatherData.main.temp
+    );
+    currentWeatherData.main.feels_like = convertToCelcius(
+      currentWeatherData.main.feels_like
+    );
+    currentWeatherData.main.temp_max = convertToCelcius(
+      currentWeatherData.main.temp_max
+    );
+    currentWeatherData.main.temp_min = convertToCelcius(
+      currentWeatherData.main.temp_min
+    );
+    displayData();
+    console.log(currentWeatherData);
+  } else if (isCelsius) {
+    isCelsius = false;
+    currentWeatherData.main.temp = convertToFarenheit(
+      currentWeatherData.main.temp
+    );
+    currentWeatherData.main.feels_like = convertToFarenheit(
+      currentWeatherData.main.feels_like
+    );
+    currentWeatherData.main.temp_max = convertToFarenheit(
+      currentWeatherData.main.temp_max
+    );
+    currentWeatherData.main.temp_min = convertToFarenheit(
+      currentWeatherData.main.temp_min
+    );
+    displayData();
+  }
+});
+
+arrowDropdown.addEventListener("mouseover", () => {
+  dropdownContainer.classList.add("active-flex");
+});
+
+exitToggleBtn.addEventListener("click", () => {
+  dropdownContainer.classList.add("anim-out");
+  dropdownContainer.style.zIndex = "-1";
+  dropdownContainer.classList.remove("active-flex");
+});
+
+dropdownContainer.addEventListener("animationend", () => {
+  if (dropdownContainer.classList.contains("anim-out")) {
+    dropdownContainer.classList.remove("anim-out");
+  }
+
+  if (dropdownContainer.classList.contains("active-flex")) {
+    dropdownContainer.style.zIndex = "0";
+  }
 });
 
 findCityWeather("London");
