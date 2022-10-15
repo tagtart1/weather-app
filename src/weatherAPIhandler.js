@@ -79,10 +79,10 @@ const processObject = (unFilteredData) => {
 };
 
 // Hits API for weather data on given city
-export const getCityData = async (city) => {
+export const getCityData = async (city, unit) => {
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}&units=imperial`,
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}&units=${unit}`,
       { mode: "cors" }
     );
     const weatherData = await response.json();

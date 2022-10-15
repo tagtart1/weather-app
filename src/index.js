@@ -45,7 +45,8 @@ const displayData = () => {
 };
 
 const findCityWeather = (city) => {
-  WeatherAPIHandler.getCityData(city).then((data) => {
+  const units = isCelsius ? "metric" : "imperial";
+  WeatherAPIHandler.getCityData(city, units).then((data) => {
     Object.assign(currentWeatherData, data);
     displayData();
     console.log(currentWeatherData);
